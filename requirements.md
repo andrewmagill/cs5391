@@ -1,6 +1,42 @@
 * **main requirements**
     * **create an account**
+        * input
+            * unordered
+                * firstname (required)
+                * middle name (optional)
+                * last name (required)
+                * mailing address (required)
+                * email address (required)
+                * default credit card (required?)
+                    * credit card type (required)
+                    * credit card number (required)
+                    * that number on back of the credit card (required)
+                    * expiration date (required)
+                * username (required)
+                * password (required)
+            * action
+                * user must submit form when complete
+        * result
+            * account is created
+    * **user profile page?**
+        * see mileage?
+        * see past purchases?
+        * change password, etc.?
+        * ...
     * **login**
+        * input
+            * unordered
+                * username (required)
+                * password (required)
+            * action
+                * user must submit form when complete
+        * result
+            * user is authenticated and logged in
+        * constraints
+            * user must have an account
+        * exceptions
+            * unknown username
+            * bad password
     * **book a flight**
         * search for flight
             * input
@@ -106,19 +142,72 @@
                 * *user must be logged in?*
                 * user must have selected departing and returning flights
             * inputs
-                * unordered
-                    * first name (required)
-                    * last name (required)
-                    * middle name (optional)
-                    * credit card type (required)
-                    * credit card number (required)
-                    * that number on back of the credit card (required)
-                    * expiration date (required)
+                * credit card payment
+                    * unordered
+                        * first name (required)
+                        * last name (required)
+                        * middle name (optional)
+                        * credit card type (required)
+                        * credit card number (required)
+                        * that number on back of the credit card (required)
+                        * expiration date (required)
+                * pay with accumulated mileage (redeem mileage)
+                    * constraints
+                        * user must be logged in
+                        * user must have sufficient miles
+                            * 25,000 miles for domestic flight
+                            * 50,000 miles for international
+                    * action
+                        * miles are subtracted from user's accumulated total
                 * action
                     * user must submit form when complete
+                    * user profile credited with flight mileage
+                        * constraints
+                            * user must be logged in
     * **book both a flight and a hotel**
+        * see book a flight
+        * pre tax discount of 20% applies
     * **check flight status**
+        * input
+            * unordered
+                * flight number (required)
+                * airline name (required)
+                * departure date (required)
+            * action
+                * user must submit form when complete
+        * result
+            * flight status displayed
+                * in flight
+                * arrived
+                * delayed
+        * exceptions
+            * *flight not found?*
     * **accumulate mileage**
+        * see book flight
     * **redeem mileage**
+        * see book a flight
     * **find deals**
+        * input
+            * unordered
+                * departing airport (required)
+                * departure date (required)
+                * destination airport (required)
+                * return date (required)
+                * price range
+            * action
+                * user must submit form when complete
+        * result
+            * list of available *deals* given input parameters
+        * exceptions
+            * no available *deals* matching input parameters
+        * misc
+            * deals ordered by price
+        * select and book
+            * similar to booking flight
     * **provide feedback**
+        * input
+            * unordered
+                * comments (optional)
+                * rating 1-10 (optional)
+        * action
+            * user must submit form
