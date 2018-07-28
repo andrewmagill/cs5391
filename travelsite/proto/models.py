@@ -28,6 +28,7 @@ class Flight(models.Model):
         auto_now_add=False, auto_now=False, null=False, blank=False)
     miles = models.PositiveSmallIntegerField(
         default=1000, null=False, blank=False)
+    international = models.BooleanField(default=False)
 
     STATUS = (
         ('FF', 'Future Flight'),
@@ -113,11 +114,10 @@ class Reservation(models.Model):
         default=1, null=False, blank=False)
     transaction = models.ForeignKey(
         Transaction, null=False, blank=False)
-    pass
 
 class Feedback(models.Model):
     # user (fk)
-    # date/time
-    # comment
-    # rating (choice)
-    pass
+    datetime = models.DateTimeField(auto_now_add=True)
+    comment = models.TextField(blank=True, null=True)
+    rating = models.PositiveSmallIntegerField(
+        default=5, null=False, blank=False)
