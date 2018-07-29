@@ -17,20 +17,24 @@ class Airline(models.Model):
     name = models.CharField(max_length=30)
 
 class Flight(models.Model):
-    flight_number = models.CharField(
-        primary_key=True, max_length=20, blank=False, unique=True)
+    flight_number = models.CharField(max_length=20, blank=False, unique=True)
     airline = models.ForeignKey(Airline, null=False, blank=False)
     source = models.ForeignKey(
         City, related_name='departing', null=False, blank=False)
     destination = models.ForeignKey(
         City, related_name='arriving', null=False, blank=False)
-    departure_datetime = models.DateTimeField(
+    departure_time = models.TimeField(
         auto_now_add=False, auto_now=False, null=False, blank=False)
-    arrival_datetime = models.DateTimeField(
+    arrival_time = models.TimeField(
         auto_now_add=False, auto_now=False, null=False, blank=False)
     miles = models.PositiveSmallIntegerField(
         default=1000, null=False, blank=False)
     international = models.BooleanField(default=False)
+
+class FlightInstance(models.Model):
+    flight = models.ForeignKey(Flight, null=False, blank=False)
+    date = models.DateField(
+        auto_now_add=False, auto_now=False, null=True, blank=True)
 
     STATUS = (
         ('FF', 'Future Flight'),
@@ -38,13 +42,13 @@ class Flight(models.Model):
         ('AR', 'Arrived'),
         ('DL', 'Delayed'),
     )
+
     status = models.CharField(
         'status', max_length=2, choices=STATUS, default='FF')
 
 class Hotel(models.Model):
     name = models.CharField(max_length=30, blank=False)
-    city = models.ForeignKey(
-        City, related_name='hotels', null=False, blank=False)
+    cities = models.ManyToManyField(City)
     number_of_rooms = models.PositiveSmallIntegerField(
         default=20, null=False, blank=False)
 
