@@ -1,0 +1,51 @@
+---
+- model: proto.airline
+  pk: 1
+  fields:
+    name: United Airlines
+- model: proto.airline
+  pk: 2
+  fields:
+    name: Delta Air Lines
+- model: proto.airline
+  pk: 3
+  fields:
+    name: American Airlines
+- model: proto.airline
+  pk: 4
+  fields:
+    name: American Airlines
+- model: proto.airline
+  pk: 5
+  fields:
+    name: JetBlue
+- model: proto.city
+  pk: 1
+  fields:
+    name: Austin
+    state: TX
+    country: US
+- model: proto.city
+  pk: 2
+  fields:
+    name: Boston
+    state: MA
+    country: US
+- model: proto.city
+  pk: 3
+  fields:
+    name: Chicago
+    state: IL
+    country: US
+- model: proto.city
+  pk: 4
+  fields:
+    name: San Francisco
+    state: CA
+    country: US
+- model: proto.city
+  pk: 5
+  fields:
+    name: Ciudad de Mexico
+    state: DF
+    country: MX

@@ -9,6 +9,8 @@ import uuid
 
 class City(models.Model):
     name = models.CharField(max_length=30)
+    state = models.CharField('state or provence', max_length=30)
+    country = models.CharField('country abbreviation', max_length=2)
     # location = PointField(help_text="Coords(Lon,Lat)", blank=True)
 
 class Airline(models.Model):
