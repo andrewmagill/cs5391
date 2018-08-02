@@ -7,14 +7,17 @@ from django.db import models
 
 import uuid
 
+
 class City(models.Model):
     name = models.CharField(max_length=30)
     state = models.CharField('state or provence', max_length=30)
     country = models.CharField('country abbreviation', max_length=2)
     # location = PointField(help_text="Coords(Lon,Lat)", blank=True)
 
+
 class Airline(models.Model):
     name = models.CharField(max_length=30)
+
 
 class Flight(models.Model):
     flight_number = models.CharField(max_length=20, blank=False, unique=True)
@@ -31,6 +34,7 @@ class Flight(models.Model):
         default=1000, null=False, blank=False)
     international = models.BooleanField(default=False)
 
+
 class FlightInstance(models.Model):
     flight = models.ForeignKey(Flight, null=False, blank=False)
     date = models.DateField(
@@ -46,11 +50,13 @@ class FlightInstance(models.Model):
     status = models.CharField(
         'status', max_length=2, choices=STATUS, default='FF')
 
+
 class Hotel(models.Model):
     name = models.CharField(max_length=30, blank=False)
     cities = models.ManyToManyField(City)
     number_of_rooms = models.PositiveSmallIntegerField(
         default=20, null=False, blank=False)
+
 
 class Occupancy(models.Model):
     hotel = models.ForeignKey(
@@ -58,6 +64,7 @@ class Occupancy(models.Model):
     date = models.DateField(null=True, blank=True)
     occupancy_count = models.PositiveSmallIntegerField(
         default=0, null=False, blank=False)
+
 
 class Address(models.Model):
     # user (fk)
@@ -76,6 +83,7 @@ class Address(models.Model):
     address_type = models.CharField(
         'address type', max_length=2, choices=TYPES, default='B')
 
+
 class CreditCard(models.Model):
     # user (fk)
     TYPES = (
@@ -90,6 +98,7 @@ class CreditCard(models.Model):
     expiration = models.DateField(null=False, blank=False)
     billing_address = models.ForeignKey(Address, null=False, blank=False)
 
+
 class Transaction(models.Model):
     # user (fk)
     number = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -100,12 +109,14 @@ class Transaction(models.Model):
     tax = models.DecimalField(max_digits=4, decimal_places=2)
     total = models.DecimalField(max_digits=4, decimal_places=2)
 
+
 class Booking(models.Model):
     # user (fk)
     transaction = models.ForeignKey(
         Transaction, null=False, blank=False)
     flight = models.ForeignKey(
         Flight, null=False, blank=False)
+
 
 class Reservation(models.Model):
     # user (fk)
@@ -120,6 +131,7 @@ class Reservation(models.Model):
         default=1, null=False, blank=False)
     transaction = models.ForeignKey(
         Transaction, null=False, blank=False)
+
 
 class Feedback(models.Model):
     # user (fk)
